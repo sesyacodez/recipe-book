@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ recipe.title }}</h1>
+
+<p><strong>Created by:</strong> {{ recipe.user.username }}</p>
+<p><strong>Cuisine:</strong> {{ recipe.cuisine.name }}</p>
+
+<h2>Description</h2>
+<p>{{ recipe.description }}</p>
+
+<h2>Ingredients</h2>
+<ul>
+	{% for ingredient in recipe.ingredients.all %}
+		<li>{{ ingredient.name }}</li>
+	{% empty %}
+		<li>No ingredients listed.</li>
+	{% endfor %}
+</ul>
+
+<h2>Categories</h2>
+<ul>
+	{% for category in recipe.categories.all %}
+		<li>{{ category.name }}</li>
+	{% empty %}
+		<li>No categories listed.</li>
+	{% endfor %}
+</ul>
+
+<h2>Instructions</h2>
+<p>{{ recipe.instructions }}</p>
+
+<p><a href="{% url 'recipe_list' %}">Back to recipes</a></p>
+<p>
+	<a href="{% url 'recipe_edit' recipe.id %}">Edit</a> |
+	<a href="{% url 'recipe_delete' recipe.id %}">Delete</a>
+</p>
+{% endblock %}

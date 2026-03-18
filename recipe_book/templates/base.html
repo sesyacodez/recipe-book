@@ -1,0 +1,17 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Recipe Book{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'recipes/recipes.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'recipe_list' %}">Home</a>
+      <a href="{% url 'recipe_create' %}">New Recipe</a>
+    </nav>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>Recipe Book &copy; 2026</footer>
+  </body>
+</html>
