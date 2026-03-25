@@ -10,6 +10,15 @@
     <nav>
       <a href="{% url 'recipe_list' %}">Home</a>
       <a href="{% url 'recipe_create' %}">New Recipe</a>
+      {% if user.is_authenticated %}
+      <span>Welcome, {{ user.first_name }}</span>
+      <form method="post" action="{% url 'logout' %}" style="display: inline">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+      {% else %}
+      <a href="{% url 'login' %}">Login</a>
+      {% endif %}
     </nav>
     <main>{% block content %}{% endblock %}</main>
     <footer>Recipe Book &copy; 2026</footer>
